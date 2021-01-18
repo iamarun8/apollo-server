@@ -39,7 +39,6 @@ class Server {
   }
 
   async setupApollo(schema) {
-    console.log('scheme--',schema);
     const { app } = this;
     (this.server = new ApolloServer({
       ...schema,
