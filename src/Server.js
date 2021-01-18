@@ -1,7 +1,6 @@
 import Express from "express";
-import pkg from "apollo-server-express";
-const { ApolloServer } = pkg;
-class Server {
+import { ApolloServer } from 'apollo-server-express';
+class Server { 
   app;
   constructor(config) {
     this.config = config;
@@ -26,18 +25,21 @@ class Server {
     return this;
   }
 
-  run() {
+  run() {;
     const { app } = this;
-    app.listen(9001, (err) => {
+    const {config: { PORT }} = this;
+    console.log('port is',PORT);
+    app.listen(PORT, (err) => {
       if (err) {
         console.log(err);
       }
-      console.log(`App is running on port ${9001}`);
+      console.log(`App is running on port ${PORT}`);
     });
     return this;
   }
 
   async setupApollo(schema) {
+    console.log('scheme--',schema);
     const { app } = this;
     (this.server = new ApolloServer({
       ...schema,
