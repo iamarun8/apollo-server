@@ -1,5 +1,6 @@
 import Express from "express";
 import { ApolloServer } from 'apollo-server-express';
+import { createServer } from "http";
 class Server { 
   app;
   constructor(config) {
@@ -29,7 +30,7 @@ class Server {
     const { app } = this;
     const {config: { PORT }} = this;
     console.log('port is',PORT);
-    app.listen(PORT, (err) => {
+    this.httpServer.listen(PORT, (err) => {
       if (err) {
         console.log(err);
       }
@@ -48,6 +49,8 @@ class Server {
         }),
     })),
       this.server.applyMiddleware({ app });
+      this.httpServer = createServer(app);
+      this.server.installSubscriptionHandlers(this.httpServer);
     this.run();
   }
 }
