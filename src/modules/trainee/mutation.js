@@ -1,19 +1,26 @@
 import userInstance from '../../service/user';
+import pubsub from '../pubsub';
+import constant from '../../lib/constant';
 
 export default {
     createTrainee: (parent, args, context) => {
         const { user } = args;
-        const data = userInstance.createUser(user);
-        return data;
+        const addeddata = userInstance.createUser(user);
+        pubsub.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: addeddata});
+        return addeddata;
     },
 
     updateTrainee: (parent, args, context) => {
         const { id, role } = args;
-        return userInstance.updateUser(id, role);
+        const updateddata = userInstance.updateUser(id, role);
+        pubsub.publish(constant.subscriptions.TRAINEE_UPDATED, { traineeUpdated: updateddata});
+        return updateddata;
     },
 
     deleteTrainee: (parent, args, context) => {
         const { id } = args;
-        return userInstance.deleteUser(id);
+        const deleteddata = userInstance.deleteUser(id);
+        pubsub.publish(constant.subscriptions.TRAINEE_DELETED, { traineeDeleted: deleteddata});
+        return deleteddata;
     }
 }
