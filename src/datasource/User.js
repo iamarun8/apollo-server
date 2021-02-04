@@ -4,7 +4,7 @@ import config from '../config/confirgurations';
 export class UserAPI extends RESTDataSource {
     constructor() {
         super();
-        this.baseURL = `${config.serviceUrl}/api/user`;
+        this.baseURL = `${config.serviceURL}/api/user`;
     }
 
     getMe(){
