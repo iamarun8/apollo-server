@@ -1,8 +1,8 @@
 import Express from "express";
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from "http";
+import { UserAPI } from './datasource/index';
 class Server { 
-  app;
   constructor(config) {
     this.config = config;
     this.app = Express();
@@ -19,9 +19,8 @@ class Server {
   }
 
   setupRoutes() {
-    this.app.use("/health-check", (req, res, next) => {
-      res.send("I am OK");
-      next();
+    this.app.use("/test", (req, res) => {
+      res.send("Test is running");
     });
     return this;
   }
@@ -29,7 +28,6 @@ class Server {
   run() {;
     const { app } = this;
     const {config: { PORT }} = this;
-    console.log('port is',PORT);
     this.httpServer.listen(PORT, (err) => {
       if (err) {
         console.log(err);
@@ -41,17 +39,23 @@ class Server {
 
   async setupApollo(schema) {
     const { app } = this;
-    (this.server = new ApolloServer({
+    (this.Server = new ApolloServer({
       ...schema,
-      onHealthCheck: () =>
-        new Promise((resolve) => {
-          resolve("I am OK ---");
-        }),
+      dataSources: () => {
+        const userAPI = new UserAPI();
+        return { userAPI };
+      },
+      context: ({req})=>{
+        if(req){
+          return {token: req.headers.authorization};
+        }
+        return{};
+      }
     })),
-      this.server.applyMiddleware({ app });
+      this.Server.applyMiddleware({ app });
       this.httpServer = createServer(app);
-      this.server.installSubscriptionHandlers(this.httpServer);
-    this.run();
+      this.Server.installSubscriptionHandlers(this.httpServer);
+      this.run();
   }
 }
 
