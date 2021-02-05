@@ -4,10 +4,14 @@ import config from '../config/confirgurations';
 export class UserAPI extends RESTDataSource {
     constructor() {
         super();
-        this.baseURL = `${config.serviceUrl}/api/user`;
+        this.baseURL = `${config.SERVICE_URL}/api/user`;
     }
 
-    getMe(){
+    willSendRequest(request){
+        request.headers.set('Authorization',this.context.token);
+    }
+
+    getMe() {
         return this.get('/me');
     }
 

@@ -5,13 +5,13 @@ type User {
     role: String
 }
 
-input loginData {
+input loginInput {
     email: String!
     password: String!
 }
 
 type onLogin {
-    status: String!
+    code: String!
     Message: String!
     Data: String!
 }
