@@ -5,7 +5,6 @@ export default class UserAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = `${config.SERVICE_URL}/api/user`;
-        console.log('baseURL/user',baseURL);
     }
 
     willSendRequest(request){

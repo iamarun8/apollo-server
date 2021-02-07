@@ -5,7 +5,6 @@ export default class TraineeAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = `${config.SERVICE_URL}/api`;
-        console.log('baseURL/user',baseURL);
     }
 
     willSendRequest(request) {
