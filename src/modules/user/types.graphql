@@ -15,3 +15,18 @@ type onLogin {
     Message: String!
     Data: String!
 }
+
+type trainee {
+    _id: ID!
+    name: String!
+    email: String!
+    role: String
+    originalId: ID
+}
+
+input UpdateUser {
+    originalId: ID!
+    name: String
+    email: String
+    password: String
+}

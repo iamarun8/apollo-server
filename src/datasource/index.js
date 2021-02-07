@@ -1,2 +1,2 @@
-export * from './Trainee';
-export * from './User'; 
+export { default as UserAPI } from './User';
+export { default as TraineeAPI } from './Trainee';

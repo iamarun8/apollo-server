@@ -1,12 +1,17 @@
 import user from '../../service/user';
-
+import { response } from 'express';
 export default {
-    getAllTrainees: () => {
-        return user.getAllUsers();
+    getAllTrainees: async(parent, args, context) => {
+        const { user } = args;
+        const { dataSources: { traineeAPI } } = context;
+        const response = await traineeAPI.getTrainees({...user});
+        console.log('response',response);
+        return response.data.records;
     },
 
-    getTrainee: (parent, args) => {
-        const { id } = args;
-        return user.getUser(id);
+    getTrainee: async(parent, args, context) => {
+        const { dataSources: { userAPI } } = context;
+        const response= await userAPI.me();
+        return response.data;
     }
-}
+};

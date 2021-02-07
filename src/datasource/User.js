@@ -1,14 +1,15 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import config from '../config/confirgurations';
 
-export class UserAPI extends RESTDataSource {
+export default class UserAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = `${config.SERVICE_URL}/api/user`;
+        console.log('baseURL/user',baseURL);
     }
 
     willSendRequest(request){
-        request.headers.set('Authorization',this.context.token);
+        request.headers.set('authorization',this.context.token);
     }
 
     getMe() {
