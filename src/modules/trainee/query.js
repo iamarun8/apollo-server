@@ -5,8 +5,7 @@ export default {
         const { user } = args;
         const { dataSources: { traineeAPI } } = context;
         const response = await traineeAPI.getTrainees({...user});
-        console.log('response',response);
-        return response.data.records;
+        return response.data;
     },
 
     getTrainee: async(parent, args, context) => {

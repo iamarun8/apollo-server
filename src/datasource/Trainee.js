@@ -12,7 +12,6 @@ export default class TraineeAPI extends RESTDataSource {
     }
 
     getTrainees(payload) {
-        console.log('inside getTrainee');
         return this.get('/trainee', payload);
     }
 

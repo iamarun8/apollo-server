@@ -1,6 +1,6 @@
 type Query {
     getMyProfile: User!
-    getAllTrainees(user: fetch): [trainee]
+    getAllTrainees(user: fetch): [[trainee]]
     getTrainee(id: ID!): User!
 }
 

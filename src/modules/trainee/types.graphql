@@ -2,6 +2,7 @@ input CreateUserInput {
     name: String!
     email: String!
     password: String!
+    role: String!
 }
 
 input fetch {
