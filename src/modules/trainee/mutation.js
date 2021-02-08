@@ -24,6 +24,6 @@ export default {
         const { dataSources: { traineeAPI } } = context ;
         const deleteRecord = await traineeAPI.deleteTrainee(id);
         pubsub.publish(constant.subscriptions.TRAINEE_DELETED, { traineeDeleted: deleteRecord.data });
-        return deleteRecord.data;
+        return deleteRecord.message;
     }
 }
