@@ -4,12 +4,9 @@
   "description": "# What is GraphQL #",
   "main": "index.js",
   "dependencies": {
-    "@babel/cli": "^7.12.10",
     "apollo-datasource-rest": "^0.9.7",
     "apollo-server": "^2.19.2",
     "apollo-server-express": "^2.19.1",
-    "babel": "^6.23.0",
-    "babel-node": "0.0.1-security",
     "connect": "^3.7.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -18,13 +15,14 @@
     "graphql-subscriptions": "^1.1.0",
     "merge-graphql-schemas": "^1.7.8",
     "pubsub": "^3.2.1",
-    "tsc-watch": "^4.2.9",
-    "qs-middleware": "^1.0.3"
+    "qs-middleware": "^1.0.3",
+    "tsc-watch": "^4.2.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.7"

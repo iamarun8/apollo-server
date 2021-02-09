@@ -1,5 +1,11 @@
 input CreateUserInput {
-    name: String
-    email: String
-    role: String
+    name: String!
+    email: String!
+    password: String!
+    role: String!
+}
+
+input fetch {
+    skip: Int!
+    limit: Int!
 }

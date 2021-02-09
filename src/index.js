@@ -1,4 +1,4 @@
-import schema from './modules';
+import schema from './modules/index';
 import Server from './Server';
 import config from './config/confirgurations'
 

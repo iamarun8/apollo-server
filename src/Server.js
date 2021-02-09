@@ -1,16 +1,12 @@
 import Express from "express";
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from "http";
-import { UserAPI } from './datasource/index';
+import { UserAPI, TraineeAPI } from './datasource/index';
 class Server { 
   constructor(config) {
     this.config = config;
     this.app = Express();
     this.run = this.run.bind(this);
-  }
-
-  get application() {
-    return this.app;
   }
 
   bootstrap() {
@@ -39,11 +35,12 @@ class Server {
 
   async setupApollo(schema) {
     const { app } = this;
-    (this.Server = new ApolloServer({
+    this.Server = new ApolloServer({
       ...schema,
       dataSources: () => {
         const userAPI = new UserAPI();
-        return { userAPI };
+        const traineeAPI = new TraineeAPI();
+        return { userAPI, traineeAPI };
       },
       context: ({req})=>{
         if(req){
@@ -51,7 +48,7 @@ class Server {
         }
         return{};
       }
-    })),
+    }),
       this.Server.applyMiddleware({ app });
       this.httpServer = createServer(app);
       this.Server.installSubscriptionHandlers(this.httpServer);
