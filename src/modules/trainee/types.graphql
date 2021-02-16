@@ -14,8 +14,8 @@ input CreateUserInput {
 }
 
 input fetch {
-    skip: Int!
-    limit: Int!
+    skip: Int
+    limit: Int
 }
 
 type trainee {
@@ -37,4 +37,27 @@ input dataToUpdateInput{
     email: String
     password: String
     role: String
+}
+
+input GetAllInput {
+    skip: Int
+    limit: Int
+    sort: String
+}
+
+type GetTrainees {
+    message: String
+    totalCount: Int
+    count: Int
+    data: [[Details]]
+}
+
+type Details {
+    _id: ID!
+    name: String
+    email: String
+    role: String
+    password: String
+    originalId: ID
+    createdAt: Date
 }
