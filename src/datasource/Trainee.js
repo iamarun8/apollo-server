@@ -11,8 +11,8 @@ export default class TraineeAPI extends RESTDataSource {
         request.headers.set('authorization', this.context.token);
     }
 
-    getTrainees(payload) {
-        return this.get('/trainee', payload);
+    getAll(payload) {
+        return this.get('/trainee',payload);
     }
 
     createTrainee(payload) {
