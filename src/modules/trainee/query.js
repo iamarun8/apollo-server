@@ -5,7 +5,6 @@ export default {
         const { payload: {skip, limit, sort } } = args;
         const { dataSources: { traineeAPI } } = context;
         const response = await traineeAPI.getAll({ skip, limit, sort });
-        console.log('---response getalltrainee---',response);
         return response;
     },
 
