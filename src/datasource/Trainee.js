@@ -16,6 +16,7 @@ export default class TraineeAPI extends RESTDataSource {
     }
 
     createTrainee(payload) {
+        console.log('-----payload-----',payload);
         return this.post('/trainee', payload);
     }
 
@@ -23,7 +24,7 @@ export default class TraineeAPI extends RESTDataSource {
         return this.put('/trainee', payload);
     }
 
-    deleteTrainee(id) {
-        return this.delete(`/trainee/${id}`);
+    deleteTrainee(originalId) {
+        return this.delete(`/trainee/${originalId}`);
     }
 }

@@ -5,6 +5,7 @@ import constant from '../../lib/constant';
 export default {
     createTrainee: async(parent, args, context) => {
         const { user } = args;
+        console.log('--CREATE--',args);
         const { dataSources: { traineeAPI } } = context;
         const createRecord = await traineeAPI.createTrainee({...user});
         pubsub.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: createRecord.data });
@@ -20,9 +21,9 @@ export default {
     },
     
     deleteTrainee: async(parent, args, context) => {
-        const { id } = args;
+        const { originalId } = args;
         const { dataSources: { traineeAPI } } = context ;
-        const deleteRecord = await traineeAPI.deleteTrainee(id);
+        const deleteRecord = await traineeAPI.deleteTrainee(originalId);
         pubsub.publish(constant.subscriptions.TRAINEE_DELETED, { traineeDeleted: deleteRecord.data });
         return deleteRecord.message;
     }
